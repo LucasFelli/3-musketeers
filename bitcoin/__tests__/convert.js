@@ -4,11 +4,11 @@ const convert = require('..');
 const Big = require('big.js');
 
 test('should default to returning a Number', () => {
-  expect(convert(2, 'BTC', 'BTC')).toBeInstanceOf(Number);
+  expect(typeof convert(2, 'BTC', 'BTC')).toBe('number');
 });
 
 test('should return a Number', () => {
-  expect(convert(2, 'BTC', 'BTC', 'Number')).toBeInstanceOf(Number);
+  expect(typeof convert(2, 'BTC', 'BTC', 'Number')).toBe('number');
 });
 
 test('should return a Big number', () => {
@@ -16,44 +16,37 @@ test('should return a Big number', () => {
 });
 
 test('should return a String', () => {
-  expect(convert(2100, 'mBTC', 'BTC', 'String')).toBeInstanceOf(String);
+  expect(typeof convert(2100, 'mBTC', 'BTC', 'String')).toBe('string');
 });
 
 test('should convert an integer', () => {
-  //convert(123456789012345, 'Satoshi', 'BTC', 'Number');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert(123456789012345, 'Satoshi', 'BTC', 'Number')).toBe('number');
 });
 
 test('should convert a number', () => {
-  //convert(1234567.89012345, 'BTC', 'Satoshi', 'Number');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert(1234567.89012345, 'BTC', 'Satoshi', 'Number')).toBe('number');
 });
 
 test('should convert a string', () => {
-  //convert('2', 'BTC', 'BTC', 'Number');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert('2', 'BTC', 'BTC', 'Number')).toBe('number');
 });
 
 test('should convert a Big number', () => {
-  //convert(new Big(2), 'BTC', 'BTC', 'Number');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert(new Big(2), 'BTC', 'BTC', 'Number')).toBe('number');
 });
 
 test('should convert a NaN to a Number', () => {
-  //convert(NaN, 'BTC', 'BTC', 'Number');
-  //convert(NaN, 'BTC', 'mBTC', 'Number');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert(NaN, 'BTC', 'BTC', 'Number')).toBe('number');
+  expect(typeof convert(NaN, 'BTC', 'mBTC', 'Number')).toBe('number');
 });
 
 test('should convert a NaN to a String', () => {
-  //convert(NaN, 'BTC', 'BTC', 'String');
-  //convert(NaN, 'BTC', 'mBTC', 'String');
-  throw new Error('test not yet defined... write your test here');
+  expect(typeof convert(NaN, 'BTC', 'BTC', 'String')).toBe('string');
+  expect(typeof convert(NaN, 'BTC', 'mBTC', 'String')).toBe('string');
 });
 
 test('should not convert a NaN to a Big', () => {
-  //convert(NaN, 'BTC', 'BTC', 'Big');
-  throw new Error('test not yet defined... write your test here');
+  expect(convert(NaN, 'BTC', 'BTC', 'Big')).not.toBeInstanceOf(Big);
 });
 
 test('should handle rounding errors', () => {
